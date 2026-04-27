@@ -109,17 +109,28 @@ Diffusion-Models-in-Financial-Risk-Assessment-Tasks/
 
 Реализована схема Denoising Diffusion Probabilistic Model с **косинусным расписанием шума** (Nichol & Dhariwal, 2021).
 
-**Прямой процесс:**
+### 1. Диффузионная вероятностная модель (DDPM)
 
-$$x_t = \sqrt{\bar{\alpha}_t} \cdot x_0 + \sqrt{1 - \bar{\alpha}_t} \cdot \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, I)$$
+Реализована схема Denoising Diffusion Probabilistic Model с **косинусным расписанием шума** (Nichol & Dhariwal, 2021).
 
-**Косинусное расписание:**
+**Прямой процесс**
 
-$$f(t) = \cos^2\!\left(\frac{t/T + s}{1 + s} \cdot \frac{\pi}{2}\right), \quad s = 0.008$$
+$$
+x_t = \sqrt{\bar{\alpha}_t}\, x_0 + \sqrt{1 - \bar{\alpha}_t}\, \varepsilon,
+\quad \varepsilon \sim \mathcal{N}(0, I)
+$$
 
-$$\bar{\alpha}_t = \frac{f(t)}{f(0)}$$
+**Косинусное расписание**
 
-Ключевые значения при \(T = 50\): \(\bar{\alpha}_{T/4} = 0{,}8356\), \(\bar{\alpha}_{T/2} = 0{,}4627\), \(\bar{\alpha}_T \approx 0\).
+$$
+f(t) = \cos^2\!\left(\frac{t/T + s}{1 + s} \cdot \frac{\pi}{2}\right), \quad s = 0.008
+$$
+
+$$
+\bar{\alpha}_t = \frac{f(t)}{f(0)}
+$$
+
+Ключевые значения при \(T = 50\): \(\bar{\alpha}_{T/4} = 0.8356\), \(\bar{\alpha}_{T/2} = 0.4627\), \(\bar{\alpha}_T \approx 0\).
 
 **Параметризация:** \(\varepsilon\)-prediction. Выбор обусловлен равномерным взвешиванием всех шагов диффузии, что обеспечивает качественное воспроизведение хвостовых событий.
 
